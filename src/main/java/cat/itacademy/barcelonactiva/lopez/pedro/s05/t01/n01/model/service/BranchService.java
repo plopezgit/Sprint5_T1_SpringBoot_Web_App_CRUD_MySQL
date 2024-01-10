@@ -34,6 +34,6 @@ public class BranchService  implements BranchServiceInterface{
 
     @Override
     public List<Branch> getAllBranches() {
-        return null;
+        return branchRepository.findAll();
     }
 }

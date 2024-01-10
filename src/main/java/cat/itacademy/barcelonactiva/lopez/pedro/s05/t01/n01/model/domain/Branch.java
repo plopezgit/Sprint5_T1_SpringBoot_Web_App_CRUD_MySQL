@@ -15,4 +15,11 @@ public class Branch implements Serializable {
     String name;
     String country;
 
+    public Branch() {
+    }
+
+    public Branch(String name, String country) {
+        this.name = name;
+        this.country = country;
+    }
 }
