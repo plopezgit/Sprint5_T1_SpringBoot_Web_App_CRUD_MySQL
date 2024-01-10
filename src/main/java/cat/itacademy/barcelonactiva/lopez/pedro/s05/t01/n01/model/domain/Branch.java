@@ -1,14 +1,14 @@
 package cat.itacademy.barcelonactiva.lopez.pedro.s05.t01.n01.model.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+
+import java.io.Serializable;
 
 @Data
 @Entity
-public class Branch {
+@Table(name="branches")
+public class Branch implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer id;
