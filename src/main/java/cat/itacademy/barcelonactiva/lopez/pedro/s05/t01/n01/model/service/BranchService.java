@@ -1,9 +1,11 @@
 package cat.itacademy.barcelonactiva.lopez.pedro.s05.t01.n01.model.service;
 
 import cat.itacademy.barcelonactiva.lopez.pedro.s05.t01.n01.model.domain.Branch;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BranchService  implements BranchServiceInterface{
     @Override
     public Branch createBranch(Branch branch) {
