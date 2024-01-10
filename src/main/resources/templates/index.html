@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
+<html xmlns:th="http://thymeLeaf.org">
+<head th:replace="template/template :: head">
     <meta charset="UTF-8">
     <title>Index</title>
-    <h1>Test</h1>
+
 </head>
 <body>
+    <header th:replace="template/template :: header"> </header>
 
+    <h1>Test</h1>
+
+    <footer th:replace="template/template :: footer"> </footer>
 </body>
 </html>
