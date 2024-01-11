@@ -47,17 +47,22 @@ public class BranchController {
     @GetMapping("/edit/{id}")
     public String editBranches (@PathVariable("id") Integer id, Model model) {
         Branch branch = branchService.getOneBranchById(id);
-        List<Branch> branches = branchService.getAllBranches();
         model.addAttribute("title", "Edit branch");
         model.addAttribute("branch", branch);
-        model.addAttribute("branches", branches);
         return "/views/branch/edit";
     }
 
     @PostMapping("/edit")
-    public String edit(@ModelAttribute Branch branch) {
-        branchService.createBranch(branch);
-        return "redirect:/views/branch/";
+    public String edit(@Valid @ModelAttribute Branch branch, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("title", "Insert branch");
+            model.addAttribute("branch", branch);
+            return "/views/branch/edit";
+        } else {
+            branchService.createBranch(branch);
+            return "redirect:/views/branch/";
+
+        }
     }
 
     @GetMapping("/delete/{id}")

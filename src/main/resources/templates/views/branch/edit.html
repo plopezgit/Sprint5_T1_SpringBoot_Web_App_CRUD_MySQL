@@ -20,22 +20,16 @@
                     <input type="hidden" th:field="*{id}">
                     <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" value="n@me">
                     <label for="name">Branch name</label>
-                    <small></small>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('name')}"
+                           th:errors="*{name}"></small>
                 </div>
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <!--
-                    <select th:field="*{country}" class="form-select" id="country">
-                        <option selected>Open this select menu</option>
-                        <option>Spain</option>
-                        <option>Brazil</option>
-                    </select>
-                    <label for="country">Country</label>
-                    -->
                     <input type="text" th:field="*{country}" class="form-control" id="country" placeholder="Country" value="Country">
                     <label for="country">Branch country</label>
-                    <small></small>
+                    <small class="form-text text-danger" th:if="${#fields.hasErrors('country')}"
+                           th:errors="*{country}"></small>
                 </div>
             </div>
         </div>
