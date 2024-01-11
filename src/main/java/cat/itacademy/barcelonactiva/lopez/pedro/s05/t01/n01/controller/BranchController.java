@@ -17,7 +17,7 @@ public class BranchController {
     private BranchServiceInterface branchService;
 
     @GetMapping("/")
-    public String insertBranches (Model model) {
+    public String insertBranch (Model model) {
         Branch branch = new Branch();
         List<Branch> branches = branchService.getAllBranches();
         model.addAttribute("title", "Insert branch");
@@ -33,7 +33,7 @@ public class BranchController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editBranches (@PathVariable("id") Integer id, Model model) {
+    public String editBranch (@PathVariable("id") Integer id, Model model) {
         Branch branch = branchService.getOneBranchById(id);
         List<Branch> branches = branchService.getAllBranches();
         model.addAttribute("title", "Edit branches");
@@ -45,6 +45,12 @@ public class BranchController {
     @PostMapping("/edit")
     public String edit(@ModelAttribute Branch branch) {
         branchService.createBranch(branch);
+        return "redirect:/views/branch/";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String deleteBranch (@PathVariable("id") Integer id, Model model) {
+        branchService.deleteBranch(id);
         return "redirect:/views/branch/";
     }
 }
