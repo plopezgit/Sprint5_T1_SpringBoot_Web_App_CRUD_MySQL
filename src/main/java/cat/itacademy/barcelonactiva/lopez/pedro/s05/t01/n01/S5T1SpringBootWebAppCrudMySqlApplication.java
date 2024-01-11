@@ -17,8 +17,7 @@ public class S5T1SpringBootWebAppCrudMySqlApplication {
 	@Bean
 	CommandLineRunner initDataDemo (BranchRepository branchRepository) {
 		return args -> {
-			branchRepository.save(new Branch("Collegium", "Spain"));
-			branchRepository.save(new Branch("Brio", "Brazil"));
+			//branchRepository.save(new Branch("Collegium", "Spain"));
 		};
 	}
 

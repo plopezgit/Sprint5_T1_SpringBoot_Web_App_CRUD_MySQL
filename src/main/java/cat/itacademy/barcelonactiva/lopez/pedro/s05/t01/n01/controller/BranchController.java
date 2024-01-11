@@ -5,8 +5,7 @@ import cat.itacademy.barcelonactiva.lopez.pedro.s05.t01.n01.model.service.Branch
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,17 +15,20 @@ public class BranchController {
 
     @Autowired
     private BranchServiceInterface branchService;
+
     @GetMapping("/")
-    public String toListBranches (Model model) {
+    public String insertBranches (Model model) {
+        Branch branch = new Branch();
         List<Branch> branches = branchService.getAllBranches();
         model.addAttribute("title", "Branches");
+        model.addAttribute("branch", branch);
         model.addAttribute("branches", branches);
         return "/views/branch/list";
     }
 
-    @GetMapping("/views/branch")
-    public String createBranch (Model model) {
-
-        return "/views/branch/list";
+    @PostMapping("/insert")
+    public String insert(@ModelAttribute Branch branch) {
+        branchService.createBranch(branch);
+        return "redirect:/views/branch/";
     }
 }

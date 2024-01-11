@@ -14,7 +14,7 @@ public class BranchService  implements BranchServiceInterface{
     private BranchRepository branchRepository;
 
     public Branch createBranch(Branch branch) {
-        return null;
+        return branchRepository.save(branch);
     }
 
     @Override

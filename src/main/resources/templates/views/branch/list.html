@@ -13,27 +13,36 @@
 </div>
 <div class="container">
     <br>
-    <div class="row g-2">
-        <div class="col-md">
-            <div class="form-floating">
-                <input type="text" class="form-control" id="name" placeholder="Name" value="n@me">
-                <label for="name">Branch name</label>
-                <small></small>
+    <form th:action="@{/views/branch/insert}" th:object="${branch}" method="post">
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" value="n@me">
+                    <label for="name">Branch name</label>
+                    <small></small>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <!--
+                    <select th:field="*{country}" class="form-select" id="country">
+                        <option selected>Open this select menu</option>
+                        <option>Spain</option>
+                        <option>Brazil</option>
+                    </select>
+                    <label for="country">Country</label>
+                    -->
+                    <input type="text" th:field="*{country}" class="form-control" id="country" placeholder="Country" value="Country">
+                    <label for="name">Branch country</label>
+                    <small></small>
+                </div>
             </div>
         </div>
-        <div class="col-md">
-            <div class="form-floating">
-                <select class="form-select" id="country">
-                    <option selected>Open this select menu</option>
-                    <option value="1">Spain</option>
-                    <option value="2">Brazil</option>
-                </select>
-                <label for="country">Country</label>
-            </div>
+        <br>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Insert"/>
         </div>
-    </div>
-    <br>
-    <button type="submit" class="btn btn-primary">Insert</button>
+    </form>
 </div>
 <div class="container">
     <br>
