@@ -25,14 +25,6 @@
             </div>
             <div class="col-md">
                 <div class="form-floating">
-                    <!--
-                    <select th:field="*{country}" class="form-select" id="country">
-                        <option selected>Open this select menu</option>
-                        <option>Spain</option>
-                        <option>Brazil</option>
-                    </select>
-                    <label for="country">Country</label>
-                    -->
                     <input type="text" th:field="*{country}" class="form-control" id="country" placeholder="Country" value="Country">
                     <label for="country">Branch country</label>
                     <small class="form-text text-danger" th:if="${#fields.hasErrors('country')}"
