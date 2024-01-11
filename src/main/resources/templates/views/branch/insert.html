@@ -62,6 +62,14 @@
             <th scope="row" th:text="${branch.id}"></th>
             <td th:text="${branch.name}"></td>
             <td th:text="${branch.country}"></td>
+            <td><a class="btn btn-success btn-sm" th:href="@{edit/} + ${branch.id}"
+                    th:text="'Edit'" title="Edit">
+                </a>
+            </td>
+            <td><a class="btn btn-danger btn-sm" th:href="@{delete/} + ${branch.id}"
+                   th:text="'Delete'" title="Delete">
+                </a>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -36,7 +36,7 @@ public class BranchController {
     public String editBranches (@PathVariable("id") Integer id, Model model) {
         Branch branch = branchService.getOneBranchById(id);
         List<Branch> branches = branchService.getAllBranches();
-        model.addAttribute("title", "Edit branches");
+        model.addAttribute("title", "Edit branch");
         model.addAttribute("branch", branch);
         model.addAttribute("branches", branches);
         return "/views/branch/edit";
