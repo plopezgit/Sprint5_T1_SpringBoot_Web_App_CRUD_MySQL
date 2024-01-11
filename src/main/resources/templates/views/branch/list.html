@@ -10,10 +10,28 @@
 <div class="container">
     <br>
     <h1 th:text="${title}"></h1>
-    <br>
-    <p th:text="${branches}"></p>
 </div>
-
+<div class="container">
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="branch:${branches}">
+            <th scope="row" th:text="${branch.id}"></th>
+            <td th:text="${branch.name}"></td>
+            <td th:text="${branch.country}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
 <footer th:replace="template/template :: footer"> </footer>
 </body>
 </html>
