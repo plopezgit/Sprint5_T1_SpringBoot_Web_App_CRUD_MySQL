@@ -67,7 +67,8 @@
                 </a>
             </td>
             <td><a class="btn btn-danger btn-sm" th:href="@{delete/} + ${branch.id}"
-                   th:text="'Delete'" title="Delete">
+                   th:text="'Delete'" title="Delete"
+                   onclick="return confirm('Are you sure?');">
                 </a>
             </td>
         </tr>
