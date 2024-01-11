@@ -23,4 +23,10 @@ public class BranchController {
         model.addAttribute("branches", branches);
         return "/views/branch/list";
     }
+
+    @GetMapping("/views/branch")
+    public String createBranch (Model model) {
+
+        return "/views/branch/list";
+    }
 }
