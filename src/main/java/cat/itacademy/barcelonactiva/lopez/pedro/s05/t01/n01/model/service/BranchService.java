@@ -23,13 +23,11 @@ public class BranchService  implements BranchServiceInterface{
     }
 
     @Override
-    public void deleteBranch(Integer id) {
-
-    }
+    public void deleteBranch(Integer id) { branchRepository.deleteById(id); }
 
     @Override
     public Branch getOneBranchById(Integer id) {
-        return null;
+        return branchRepository.getReferenceById(id);
     }
 
     @Override

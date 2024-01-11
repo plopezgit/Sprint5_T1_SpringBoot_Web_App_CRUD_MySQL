@@ -20,14 +20,30 @@ public class BranchController {
     public String insertBranches (Model model) {
         Branch branch = new Branch();
         List<Branch> branches = branchService.getAllBranches();
-        model.addAttribute("title", "Branches");
+        model.addAttribute("title", "Insert branch");
         model.addAttribute("branch", branch);
         model.addAttribute("branches", branches);
-        return "/views/branch/list";
+        return "/views/branch/insert";
     }
 
     @PostMapping("/insert")
     public String insert(@ModelAttribute Branch branch) {
+        branchService.createBranch(branch);
+        return "redirect:/views/branch/";
+    }
+
+    @GetMapping("/edit/{id}")
+    public String editBranches (@PathVariable("id") Integer id, Model model) {
+        Branch branch = branchService.getOneBranchById(id);
+        List<Branch> branches = branchService.getAllBranches();
+        model.addAttribute("title", "Edit branches");
+        model.addAttribute("branch", branch);
+        model.addAttribute("branches", branches);
+        return "/views/branch/edit";
+    }
+
+    @PostMapping("/edit")
+    public String edit(@ModelAttribute Branch branch) {
         branchService.createBranch(branch);
         return "redirect:/views/branch/";
     }

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeLeaf.org">
+<head th:replace="template/template :: head">
+    <meta charset="UTF-8">
+    <title>Insert branch</title>
+
+</head>
+<body>
+<header th:replace="template/template :: header"> </header>
+<div class="container">
+    <br>
+    <h1 th:text="${title}"></h1>
+</div>
+<div class="container">
+    <br>
+    <form th:action="@{/views/branch/insert}" th:object="${branch}" method="post">
+        <div class="row g-2">
+            <div class="col-md">
+                <div class="form-floating">
+                    <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" value="n@me">
+                    <label for="name">Branch name</label>
+                    <small></small>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <!--
+                    <select th:field="*{country}" class="form-select" id="country">
+                        <option selected>Open this select menu</option>
+                        <option>Spain</option>
+                        <option>Brazil</option>
+                    </select>
+                    <label for="country">Country</label>
+                    -->
+                    <input type="text" th:field="*{country}" class="form-control" id="country" placeholder="Country" value="Country">
+                    <label for="country">Branch country</label>
+                    <small></small>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div>
+            <input type="submit" class="btn btn-primary" value="Insert"/>
+        </div>
+    </form>
+</div>
+<div class="container">
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Country</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="branch:${branches}">
+            <th scope="row" th:text="${branch.id}"></th>
+            <td th:text="${branch.name}"></td>
+            <td th:text="${branch.country}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<footer th:replace="template/template :: footer"> </footer>
+</body>
+</html>

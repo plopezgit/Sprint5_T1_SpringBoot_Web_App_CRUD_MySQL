@@ -2,7 +2,7 @@
 <html xmlns:th="http://thymeLeaf.org">
 <head th:replace="template/template :: head">
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Edit branch</title>
 
 </head>
 <body>
@@ -13,10 +13,11 @@
 </div>
 <div class="container">
     <br>
-    <form th:action="@{/views/branch/insert}" th:object="${branch}" method="post">
+    <form th:action="@{/views/branch/edit}" th:object="${branch}" method="post">
         <div class="row g-2">
             <div class="col-md">
                 <div class="form-floating">
+                    <input type="hidden" th:field="*{id}">
                     <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" value="n@me">
                     <label for="name">Branch name</label>
                     <small></small>
@@ -33,14 +34,14 @@
                     <label for="country">Country</label>
                     -->
                     <input type="text" th:field="*{country}" class="form-control" id="country" placeholder="Country" value="Country">
-                    <label for="name">Branch country</label>
+                    <label for="country">Branch country</label>
                     <small></small>
                 </div>
             </div>
         </div>
         <br>
         <div>
-            <input type="submit" class="btn btn-primary" value="Insert"/>
+            <input type="submit" class="btn btn-primary" value="Edit"/>
         </div>
     </form>
 </div>
