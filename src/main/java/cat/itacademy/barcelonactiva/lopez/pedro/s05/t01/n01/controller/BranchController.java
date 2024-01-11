@@ -2,9 +2,11 @@ package cat.itacademy.barcelonactiva.lopez.pedro.s05.t01.n01.controller;
 
 import cat.itacademy.barcelonactiva.lopez.pedro.s05.t01.n01.model.domain.Branch;
 import cat.itacademy.barcelonactiva.lopez.pedro.s05.t01.n01.model.service.BranchServiceInterface;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,9 +29,19 @@ public class BranchController {
     }
 
     @PostMapping("/insert")
-    public String insert(@ModelAttribute Branch branch) {
-        branchService.createBranch(branch);
-        return "redirect:/views/branch/";
+    public String insert(@Valid @ModelAttribute Branch branch, BindingResult result, Model model) {
+        List<Branch> branches = branchService.getAllBranches();
+        if (result.hasErrors()) {
+            model.addAttribute("title", "Insert branch");
+            model.addAttribute("branch", branch);
+            model.addAttribute("branches", branches);
+
+            return "/views/branch/insert";
+        } else {
+            branchService.createBranch(branch);
+            return "redirect:/views/branch/";
+
+        }
     }
 
     @GetMapping("/edit/{id}")
