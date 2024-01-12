@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -53,13 +54,16 @@ public class BranchController {
     }
 
     @PostMapping("/edit")
-    public String edit(@Valid @ModelAttribute Branch branch, BindingResult result, Model model) {
+    public String edit(@Valid @ModelAttribute Branch branch,
+                       BindingResult result, Model model, RedirectAttributes attributeMessage) {
         if (result.hasErrors()) {
             model.addAttribute("title", "Insert branch");
             model.addAttribute("branch", branch);
             return "/views/branch/edit";
         } else {
             branchService.createBranch(branch);
+            attributeMessage.addFlashAttribute("success",
+                    "Branch has been edited.");
             return "redirect:/views/branch/";
 
         }
@@ -70,4 +74,5 @@ public class BranchController {
         branchService.deleteBranch(id);
         return "redirect:/views/branch/";
     }
+
 }

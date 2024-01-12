@@ -26,9 +26,7 @@ public class BranchService  implements BranchServiceInterface{
     public void deleteBranch(Integer id) { branchRepository.deleteById(id); }
 
     @Override
-    public Branch getOneBranchById(Integer id) {
-        return branchRepository.getReferenceById(id);
-    }
+    public Branch getOneBranchById(Integer id) { return branchRepository.getReferenceById(id); }
 
     @Override
     public List<Branch> getAllBranches() {
