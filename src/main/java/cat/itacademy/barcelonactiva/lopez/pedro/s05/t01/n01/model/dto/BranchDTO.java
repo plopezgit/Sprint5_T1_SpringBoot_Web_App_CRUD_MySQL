@@ -12,7 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 public class BranchDTO {
     private int id;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String country;
     private String type;
     private final List<String> EUROPEAN_COUNTRIES_REFERENCE = List.of("Austria", "Belgium", "Bulgaria", "Croatia", "Republic of Cyprus",
@@ -27,9 +29,13 @@ public class BranchDTO {
 
     }
 
-    public void setType (String country) {
+    public void setCountry (String country) {
         this.country = country;
-        this.type = EUROPEAN_COUNTRIES_REFERENCE.stream().anyMatch(count -> count
-                .equalsIgnoreCase(country))? "Euro" : "Not Euro";
+        setType(country);
+    }
+
+    public void setType (String country) {
+        if (EUROPEAN_COUNTRIES_REFERENCE.stream().anyMatch(c -> c.equalsIgnoreCase(country))) this.type = "Euro";
+        else this.type = "Not Euro";
     }
 }
