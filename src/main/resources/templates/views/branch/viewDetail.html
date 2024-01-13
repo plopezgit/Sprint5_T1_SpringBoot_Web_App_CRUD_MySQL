@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeLeaf.org">
+<head th:replace="template/template :: head">
+    <meta charset="UTF-8">
+    <title>Insert branch</title>
+
+</head>
+<body>
+<header th:replace="template/template :: header"> </header>
+<div class="container">
+    <br>
+    <h1 th:text="${title}"></h1>
+</div>
+<div class="container">
+    <br>
+    <br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Country</th>
+            <th scope="col">Type</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:object="${branch}">
+            <td th:text="${branch.id}"></td>
+            <td th:text="${branch.name}"></td>
+            <td th:text="${branch.country}"></td>
+            <td th:text="${branch.type}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<br>
+<br>
+<footer th:replace="template/template :: footer"> </footer>
+</body>
+</html>

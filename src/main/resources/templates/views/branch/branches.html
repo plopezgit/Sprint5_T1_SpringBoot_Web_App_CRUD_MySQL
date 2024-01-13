@@ -13,33 +13,6 @@
 </div>
 <div class="container">
     <br>
-    <form th:action="@{/views/branch/insert}" th:object="${branch}" method="post">
-        <div class="row g-2">
-            <div class="col-md">
-                <div class="form-floating">
-                    <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="Name" value="n@me">
-                    <label for="name">Branch name</label>
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('name')}"
-                           th:errors="*{name}"></small>
-                </div>
-            </div>
-            <div class="col-md">
-                <div class="form-floating">
-                    <input type="text" th:field="*{country}" class="form-control" id="country" placeholder="Country" value="Country">
-                    <label for="country">Branch country</label>
-                    <small class="form-text text-danger" th:if="${#fields.hasErrors('country')}"
-                           th:errors="*{country}"></small>
-                </div>
-            </div>
-        </div>
-        <br>
-        <div>
-            <input type="submit" class="btn btn-primary" value="Insert"/>
-        </div>
-    </form>
-</div>
-<div class="container">
-    <br>
     <br>
     <table class="table">
         <thead>

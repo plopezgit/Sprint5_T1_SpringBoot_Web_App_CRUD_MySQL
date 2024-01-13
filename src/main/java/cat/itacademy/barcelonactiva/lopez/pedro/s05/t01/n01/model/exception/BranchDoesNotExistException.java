@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class BranchDoesNotExist extends Exception {
+public class BranchDoesNotExistException extends Exception {
     private String message;
 }
