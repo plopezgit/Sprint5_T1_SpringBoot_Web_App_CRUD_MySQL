@@ -14,7 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 @Controller
-@RequestMapping("/views/branch")
+@RequestMapping("/branch")
 public class BranchController {
 
 
@@ -26,13 +26,13 @@ public class BranchController {
         this.branchService = branchService;
     }
 
-    @GetMapping("/")
+    @GetMapping("/add")
     public String insertBranches (Model model) {
         BranchDTO newBranch = new BranchDTO();
         model.addAttribute("title", "Insert branch");
         model.addAttribute("branch", newBranch);
         model.addAttribute("branches", branchService.getBranches());
-        return "/views/branch/insert";
+        return "/branch/insert";
     }
 
     @PostMapping("/insert")
@@ -41,25 +41,23 @@ public class BranchController {
             model.addAttribute("title", "Insert branch");
             model.addAttribute("branch", branchDTO);
             model.addAttribute("branches", branchService.getBranches());
-            return "/views/branch/insert";
+            return "/branch/insert";
         } else {
             branchService.createBranch(branchDTO);
-            return "redirect:/views/branch/";
+            return "redirect:/branch/add";
 
         }
     }
 
     @GetMapping("/edit/{id}")
     public String editBranches (@PathVariable("id") Integer id, Model model) {
-        BranchDTO branchDTO = null;
         try {
-            branchDTO = branchService.getBranchById(id);
+            model.addAttribute("title", "Edit branch");
+            model.addAttribute("branch", branchService.getBranchById(id));
         } catch (BranchDoesNotExistException e) {
-            throw new RuntimeException(e);
+            return "redirect:/branch/add";
         }
-        model.addAttribute("title", "Edit branch");
-        model.addAttribute("branch", branchDTO);
-        return "/views/branch/edit";
+        return "/branch/edit";
     }
 
     @PostMapping("/edit")
@@ -68,12 +66,16 @@ public class BranchController {
         if (result.hasErrors()) {
             model.addAttribute("title", "Insert branch");
             model.addAttribute("branch", branchDTO);
-            return "/views/branch/edit";
+            return "/branch/edit";
         } else {
-            branchService.createBranch(branchDTO);
+            try {
+                branchService.updateBranch(branchDTO.getId(), branchDTO);
+            } catch (BranchDoesNotExistException e) {
+                return "redirect:/branch/add";
+            }
             attributeMessage.addFlashAttribute("success",
                     "Branch has been edited.");
-            return "redirect:/views/branch/";
+            return "redirect:/branch/add";
 
         }
     }
@@ -85,14 +87,14 @@ public class BranchController {
         } catch (BranchDoesNotExistException e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/views/branch/";
+        return "redirect:/branch/add";
     }
 
     @GetMapping("/getAll")
     public String viewBranches (Model model) {
         model.addAttribute("title", "Branch list");
         model.addAttribute("branches", branchService.getBranches());
-        return "views/branch/branches";
+        return "branch/branches";
     }
 
     @GetMapping("/getOne/{id}")
@@ -105,7 +107,7 @@ public class BranchController {
         }
         model.addAttribute("title", "Branch detail");
         model.addAttribute("branch", branchDTO);
-        return "/views/branch/viewDetail";
+        return "/branch/viewDetail";
     }
 
 }

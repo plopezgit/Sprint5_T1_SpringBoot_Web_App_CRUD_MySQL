@@ -21,7 +21,7 @@ public class BranchDTO {
             "Czech Republic", "Denmark", "Estonia", "Finland", "France", "Germany",
             "Greece", "Hungary", "Ireland", "Italy", "Latvia", "Lithuania", "Luxembourg",
             "Malta", "Netherlands", "Poland", "Portugal", "Romania", "Slovakia",
-            "Slovenia", "Spain and Sweden");
+            "Slovenia", "Spain", "Sweden");
 
     public BranchDTO(String name, String country) {
         this.name = name;
